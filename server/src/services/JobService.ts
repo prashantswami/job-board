@@ -5,8 +5,8 @@ export default function JobService() {
 
   function createJob(job: IJob) {
     try {
-    return JobModel.create(job);
-    }catch(error) {
+      return JobModel.create(job);
+    } catch (error) {
       console.error(error);
       return null;
     }
@@ -25,7 +25,7 @@ export default function JobService() {
 
   async function getJobById(id: string) {
     try {
-      const jobs = await JobModel.findOne({_id: id});
+      const jobs = await JobModel.findOne({ _id: id });
       return jobs;
     } catch (error) {
       console.error(error);
@@ -35,22 +35,22 @@ export default function JobService() {
 
   async function deleteJob(id: string) {
     try {
-      return await JobModel.deleteOne({_id: id});
+      return await JobModel.deleteOne({ _id: id });
     } catch (error) {
       console.error(error);
-      return {deletedCount: 0};
+      return { deletedCount: 0 };
     }
   }
 
   async function updateJob(id: string, job: IJob) {
     try {
       const newJob = await JobModel.findOneAndUpdate({ _id: id }, job, { new: true });
-      return newJob?.toObject();  
+      return newJob?.toObject();
     } catch (error) {
       console.error(error);
       return null;
     }
-    
+
   }
 
   return {
